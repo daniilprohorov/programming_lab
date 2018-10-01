@@ -11,13 +11,13 @@ namespace ConsoleApp1
         public Calc()
         {
         }
-        public void initResult(double el)
+        public void InitResult(double el)
         {
             Result.Add(el);
             count++;
         }
 
-        public double getResult()
+        public double GetResult()
         {
             if (Result.Count > 0)
                 return Result[Result.Count -1];
@@ -28,7 +28,7 @@ namespace ConsoleApp1
             }
                 
         }
-        public double getResult(int n)
+        public double GetResult(int n)
         {
             if (Result.Count > 0 && n >= 1 && n <= Result.Count)
             {
@@ -49,24 +49,24 @@ namespace ConsoleApp1
                 }
             }
         }
-        public int getCount() => count;
+        public int Count => count;
         public int add(double n)
         {
-            Result.Add(getResult() + n);
+            Result.Add(GetResult() + n);
             count++;
             return 0;
         }
 
         public int sub(double n)
         {
-            Result.Add(getResult() - n);
+            Result.Add(GetResult() - n);
             count++;
             return 0;
         }
 
         public int mul(double n)
         {
-            Result.Add(getResult() * n);
+            Result.Add(GetResult() * n);
             count++;
             return 0;
         }
@@ -80,7 +80,7 @@ namespace ConsoleApp1
             }
             else
             {
-                Result.Add(getResult() / n);
+                Result.Add(GetResult() / n);
                 count++;
                 return 0;
             }

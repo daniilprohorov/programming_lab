@@ -7,13 +7,13 @@ namespace ConsoleApp1
 {
     internal class IO
     {
-        public void printCalc(Wolfram W)
+        public void PrintCalc(Wolfram W)
         {
             var i = W.GetCalcs().Count;
             Calc c = W.LastCalc();
             string input = " in[" + i  + "] = " + String.Join("", c.StringWolfram);
-            string output = " out[" + i + "] = " + c.getResult();
-            saveFile(input + output); 
+            string output = " out[" + i + "] = " + c.GetResult();
+            SaveFile(input + output); 
             Console.WriteLine("\n" + input);
             Console.WriteLine("\n" + output);
         }
@@ -40,14 +40,14 @@ namespace ConsoleApp1
                         c.StringWolfram.Add(String.Join("", lstOfPursantage));
                         if (c.StringWolfram.Count >= 1)
                         {   
-                            if(c.getCount() >= 1)
+                            if(c.Count>= 1)
                             {
                                 c.StringWolfram.Add(")");
                             }
                             Calc res = W.NCalc(n);
                             if(res != null)
                             {
-                                return res.getResult();
+                                return res.GetResult();
                             }
                           
                         }
@@ -64,7 +64,7 @@ namespace ConsoleApp1
             return num;
         }
 
-        public int saveFile(String information, String path = "new6.nb")
+        public int SaveFile(String information, String path = "new6.nb")
         {
             try
             {
@@ -96,22 +96,22 @@ namespace ConsoleApp1
                     Console.WriteLine("\n Повторите ввод данных, неверное число!");
             } while (res != 0);
         }
-        public void printAnswer(Calc c)
+        public void PrintAnswer(Calc c)
         {
-                    double prt = c.getResult(c.getCount());
-                    Console.Write("\n[#{0}]= {1}", c.getCount(), prt);
+                    double prt = c.GetResult(c.Count);
+                    Console.Write("\n[#{0}]= {1}", c.Count, prt);
             
         }
-        public void actions(Wolfram W)
+        public void Actions(Wolfram W)
         {
             int num;
             Boolean exit = false;
             do
             {
                 Calc c = W.LastCalc();
-                if (c.getCount() == 0)
+                if (c.Count== 0)
                 {
-                    c.initResult(Num(W));
+                    c.InitResult(Num(W));
                 }
 
                 
@@ -130,29 +130,29 @@ namespace ConsoleApp1
                             c.StringWolfram.Add("+");
                             c.StringWolfram.Insert(0, "(");
                             loop(c.add, W);
-                            printAnswer(c);
+                            PrintAnswer(c);
                             break;
                         case '-':
                             c.StringWolfram.Add("-");
                             c.StringWolfram.Insert(0, "(");
                             loop(c.sub, W);
-                            printAnswer(c);
+                            PrintAnswer(c);
                             break;
                         case '*':
                             c.StringWolfram.Add("*");
                             c.StringWolfram.Insert(0, "(");
                             loop(c.mul, W);
-                            printAnswer(c);
+                            PrintAnswer(c);
                             break;
                         case '/':
                             c.StringWolfram.Add("/");
                             c.StringWolfram.Insert(0, "(");
                             loop(c.div, W);
-                            printAnswer(c);
+                            PrintAnswer(c);
                             break;
                         case 'n':
                             //c.StringWolfram.Insert(0, "(");
-                            printCalc(W);
+                            PrintCalc(W);
                             W.NewCalc();
                             break;
                         case 'q':
@@ -165,7 +165,7 @@ namespace ConsoleApp1
                 }
                 else
                 {
-                    c.getResult(num);
+                    c.GetResult(num);
                 }
             } while (!exit);
         }

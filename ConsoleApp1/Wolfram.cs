@@ -74,7 +74,7 @@ namespace ConsoleApp1
                     Data = "RowBox[{\"" + string.Join("\",\"", c.StringWolfram) + "\"}]";
                 }
                 strOut += "Cell[CellGroupData[{Cell[BoxData[" + Data + "],\"Input\", ExpressionUUID -> \"" + System.Guid.NewGuid().ToString() + "\",CellLabel -> \"In[" + (n-i).ToString() + "]:= \"],";
-                strOut += "Cell[BoxData[\"" + c.getResult().ToString() + "\", StandartForm],\"Output\", ExpressionUUID -> \"" + System.Guid.NewGuid().ToString() + "\",CellLabel -> \"Out[" + (n-i).ToString() + "]= \"]},Open],ExpressionUUID -> \"" + System.Guid.NewGuid().ToString() + "\"]";
+                strOut += "Cell[BoxData[\"" + c.GetResult().ToString() + "\", StandartForm],\"Output\", ExpressionUUID -> \"" + System.Guid.NewGuid().ToString() + "\",CellLabel -> \"Out[" + (n-i).ToString() + "]= \"]},Open],ExpressionUUID -> \"" + System.Guid.NewGuid().ToString() + "\"]";
                 if(i != 0)
                 {
                     strOut += ",";
