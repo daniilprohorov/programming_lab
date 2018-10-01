@@ -6,7 +6,6 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(System.Guid.NewGuid().ToString());
             Console.WriteLine("Использование:\n" +
                 "Когда первый символ '>' введите число или ячейчку памяти out[i] \n" +
                 "Когда первый символ '@' введите операцию для выполнение действия\n" +
@@ -15,13 +14,13 @@ namespace ConsoleApp1
                // "       o <имя файла> - открыть файл файл"+
                 "       <число> вывода ячейки с результатом\n" +
                 "       q - выход из программы");
+
             Wolfram W = new Wolfram();
             Calc c = new Calc();
             IO input = new IO();
         
             input.Actions(W);
             input.SaveFile(W.CreateFile());
-            Console.ReadKey();
         }
     }
 }
