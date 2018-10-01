@@ -5,8 +5,14 @@ using System.Linq;
 
 namespace ConsoleApp1
 {
+    /// <summary>
+    /// Input/Output class 
+    /// </summary>
     internal class IO
     {
+        /// <summary>
+        /// Print calculations like in Wolfram notebook
+        /// </summary> 
         public void PrintCalc(Wolfram W)
         {
             var i = W.GetCalcs().Count;
@@ -17,6 +23,11 @@ namespace ConsoleApp1
             Console.WriteLine("\n" + input);
             Console.WriteLine("\n" + output);
         }
+        ///<summary>
+        ///input number from command line
+        ///then add it to string for 
+        ///wolfram notebook
+        ///</summary>
         public double Num(Wolfram W)
         {
             Calc c = W.LastCalc();
@@ -25,7 +36,6 @@ namespace ConsoleApp1
             while (!input)
             {
 
-                //c.StringWolfram.ForEach(Console.Write);
                 Console.Write("> ");
                 String consoleStr = Console.ReadLine().Split()[0];
                 input = double.TryParse(consoleStr, out num);
@@ -63,7 +73,13 @@ namespace ConsoleApp1
             }
             return num;
         }
-
+        /// <summary>
+        /// Save evaluations
+        /// in wolfram notebook file
+        /// </summary>
+        /// <param name="information"></param>
+        /// <param name="path"></param>
+        /// <returns> -1 = error; 1 = ok </returns>
         public int SaveFile(String information, String path = "new6.nb")
         {
             try
@@ -85,7 +101,21 @@ namespace ConsoleApp1
                 return -1;
             }
         }
+        /// <summary>
+        /// Model of action function
+        /// like add, mul, etc.
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns>function</returns>
         public delegate int actionFunc(double n);
+
+        /// <summary>
+        /// Loop cycle for 
+        /// apply num from 
+        /// cmd line to "function"
+        /// </summary>
+        /// <param name="function"></param>
+        /// <param name="Wolfram obj"></param>
         private void loop(actionFunc func, Wolfram W)
         {
             int res = 0;
@@ -96,12 +126,22 @@ namespace ConsoleApp1
                     Console.WriteLine("\n Повторите ввод данных, неверное число!");
             } while (res != 0);
         }
+
+        /// <summary>
+        /// Print the result of line
+        /// evaluations
+        /// </summary>
+        /// <param name="Calc obj"></param>
         public void PrintAnswer(Calc c)
         {
                     double prt = c.GetResult(c.Count);
                     Console.Write("\n[#{0}]= {1}", c.Count, prt);
             
         }
+        /// <summary>
+        /// Choose action to do  
+        /// </summary>
+        /// <param name="Wolfram obj"></param>
         public void Actions(Wolfram W)
         {
             int num;
@@ -151,7 +191,6 @@ namespace ConsoleApp1
                             PrintAnswer(c);
                             break;
                         case 'n':
-                            //c.StringWolfram.Insert(0, "(");
                             PrintCalc(W);
                             W.NewCalc();
                             break;
